@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://clacr6gc6drlu"]
+
+[ext_resource type="Texture2D" uid="uid://sumrk731a5ci" path="res://goal.png" id="1_bkryc"]
+[ext_resource type="Script" path="res://goal.cs" id="1_h7dmy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7pep"]
+atlas = ExtResource("1_bkryc")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uwesl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7pep")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hma10"]
+size = Vector2(63, 58)
+
+[node name="Goal" type="Area2D"]
+script = ExtResource("1_h7dmy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_uwesl")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://art/goal.aseprite"
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_hma10")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

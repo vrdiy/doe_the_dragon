@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2q6kcjbgbbqi"]
+
+[ext_resource type="Texture2D" uid="uid://c66adwv3ehluo" path="res://doubleJump.png" id="1_a62ep"]
+[ext_resource type="Script" path="res://doublejump.cs" id="1_nfvnp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g63rt"]
+atlas = ExtResource("1_a62ep")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51qtv"]
+atlas = ExtResource("1_a62ep")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_natty"]
+atlas = ExtResource("1_a62ep")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0m0dd"]
+atlas = ExtResource("1_a62ep")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eublq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g63rt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51qtv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_natty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0m0dd")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="DoubleJump" type="Node2D"]
+script = ExtResource("1_nfvnp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_eublq")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://art/doubleJump.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false
+}
+
+[node name="DeletionTimer" type="Timer" parent="."]
+wait_time = 0.4
+
+[connection signal="timeout" from="DeletionTimer" to="." method="Delete"]

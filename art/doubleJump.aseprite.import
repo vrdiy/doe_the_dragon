@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dn7j3ln67171p"
+path="res://.godot/imported/doubleJump.aseprite-1af2e7665e8b7633dc2734cf7a774cf0.res"
+
+[deps]
+
+source_file="res://art/doubleJump.aseprite"
+dest_files=["res://.godot/imported/doubleJump.aseprite-1af2e7665e8b7633dc2734cf7a774cf0.res"]
+
+[params]
+

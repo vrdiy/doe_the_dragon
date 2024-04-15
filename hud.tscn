@@ -1,0 +1,165 @@
+[gd_scene load_steps=7 format=3 uid="uid://by01l4n0hi1vx"]
+
+[ext_resource type="Script" path="res://HUD.cs" id="1_4brtd"]
+[ext_resource type="Texture2D" uid="uid://dp21f5a5kvopa" path="res://background.png" id="2_0orio"]
+[ext_resource type="FontFile" uid="uid://c76w8qmxb4oxp" path="res://art/fonts/ponde___.ttf" id="2_3o7n0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_br4sw"]
+atlas = ExtResource("2_0orio")
+region = Rect2(0, 0, 1280, 720)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cxkcr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_br4sw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Theme" id="Theme_rgc8y"]
+default_font = ExtResource("2_3o7n0")
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_4brtd")
+
+[node name="Splash" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(590, 324)
+sprite_frames = SubResource("SpriteFrames_cxkcr")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://art/background.aseprite"
+}
+
+[node name="Title" type="Label" parent="."]
+offset_left = 78.0
+offset_top = 194.0
+offset_right = 1112.0
+offset_bottom = 286.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0.67451, 0.211765, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_3o7n0")
+theme_override_font_sizes/font_size = 91
+text = "Doe The Dragon"
+
+[node name="Label" type="Label" parent="Title"]
+layout_mode = 0
+offset_left = 327.0
+offset_top = 114.0
+offset_right = 662.0
+offset_bottom = 166.0
+tooltip_text = "https://github.com/vrdiy"
+mouse_filter = 1
+theme = SubResource("Theme_rgc8y")
+theme_override_fonts/font = ExtResource("2_3o7n0")
+theme_override_font_sizes/font_size = 51
+text = "by vrdiy"
+
+[node name="NumCharges" type="Label" parent="."]
+visible = false
+offset_left = 561.0
+offset_top = 163.0
+offset_right = 652.0
+offset_bottom = 275.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 10
+theme_override_fonts/font = ExtResource("2_3o7n0")
+theme_override_font_sizes/font_size = 111
+text = "0"
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 370.0
+offset_top = 424.0
+offset_right = 833.0
+offset_bottom = 544.0
+theme_override_colors/font_color = Color(0, 0.729412, 0.247059, 1)
+theme_override_fonts/font = ExtResource("2_3o7n0")
+theme_override_font_sizes/font_size = 111
+text = "Start"
+
+[node name="Message" type="Label" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -362.5
+offset_top = -77.0
+offset_right = 362.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("2_3o7n0")
+theme_override_font_sizes/font_size = 36
+text = "Collect the stars!
+What level can you reach?"
+
+[node name="MessageTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="LevelNum" type="Label" parent="."]
+visible = false
+offset_left = 15.0
+offset_top = 3.0
+offset_right = 57.0
+offset_bottom = 55.0
+theme_override_fonts/font = ExtResource("2_3o7n0")
+theme_override_font_sizes/font_size = 51
+text = "1"
+
+[node name="ToggleInstructions" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -812.0
+offset_bottom = 37.0
+grow_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("2_3o7n0")
+theme_override_font_sizes/font_size = 36
+text = "Press Shift To Show Instructions"
+
+[node name="Instructions" type="Label" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -536.5
+offset_top = -317.0
+offset_right = 536.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("2_3o7n0")
+theme_override_font_sizes/font_size = 36
+text = "Summoning a pillar beneath costs 3 
+Summoning a pillar to the side costs 1 
+
+Move: AD/Left Stick
+Jump: Space/Bottom Button
+Summon Pillar Left: LMB/Left Bumper
+Summon Pillar Right: RMB/Right Bumper
+Summon Pillar Under: W/Right Trigger"
+
+[connection signal="pressed" from="StartButton" to="." method="OnStartButtonPressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="OnMessageTimerTimeout"]

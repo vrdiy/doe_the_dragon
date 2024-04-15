@@ -1,0 +1,100 @@
+[gd_scene load_steps=17 format=3 uid="uid://cexye6ai0ivyv"]
+
+[ext_resource type="Script" path="res://main.cs" id="1_gn1wu"]
+[ext_resource type="PackedScene" uid="uid://b4jg7idhxqxah" path="res://player.tscn" id="1_sielb"]
+[ext_resource type="PackedScene" uid="uid://drsn85btf5x8g" path="res://bounce_pad.tscn" id="3_8m0lv"]
+[ext_resource type="PackedScene" uid="uid://e0i2wwal5td8" path="res://pillar.tscn" id="3_at73b"]
+[ext_resource type="PackedScene" uid="uid://clacr6gc6drlu" path="res://goal.tscn" id="4_en7su"]
+[ext_resource type="PackedScene" uid="uid://dborg81pdqv2x" path="res://arrow.tscn" id="4_m8c0j"]
+[ext_resource type="PackedScene" uid="uid://bouei1mi1xxi7" path="res://spike.tscn" id="5_tryd0"]
+[ext_resource type="PackedScene" uid="uid://prq3bsch0w1n" path="res://background.tscn" id="5_xwpp5"]
+[ext_resource type="Texture2D" uid="uid://n7o76r7hbtm" path="res://floor.png" id="6_kds4x"]
+[ext_resource type="PackedScene" uid="uid://by01l4n0hi1vx" path="res://hud.tscn" id="8_74upn"]
+[ext_resource type="PackedScene" uid="uid://tgixdfjxsfmt" path="res://ufo.tscn" id="9_ieb21"]
+[ext_resource type="AudioStream" uid="uid://hm4asultqq81" path="res://sfx/starcollect.wav" id="11_nkjsg"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jgij3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7a4om"]
+size = Vector2(40.9934, 104.867)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40m3b"]
+atlas = ExtResource("6_kds4x")
+region = Rect2(0, 0, 1024, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2gv2h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40m3b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_gn1wu")
+PillarScene = ExtResource("3_at73b")
+BouncePadScene = ExtResource("3_8m0lv")
+StarScene = ExtResource("4_en7su")
+SpikeScene = ExtResource("5_tryd0")
+metadata/_edit_group_ = true
+
+[node name="Arrow" parent="." instance=ExtResource("4_m8c0j")]
+position = Vector2(-109, 544)
+scale = Vector2(0.43, 0.43)
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"slice_section": true
+}
+
+[node name="Clouds" parent="." instance=ExtResource("5_xwpp5")]
+
+[node name="Player" parent="." instance=ExtResource("1_sielb")]
+position = Vector2(585, 384)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(4, 21)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+material = SubResource("CanvasItemMaterial_jgij3")
+position = Vector2(391.5, 829.65)
+scale = Vector2(51.74, 4.87)
+shape = SubResource("RectangleShape2D_7a4om")
+debug_color = Color(0, 0.643137, 0.337255, 0.419608)
+
+[node name="Floor" type="AnimatedSprite2D" parent="Floor"]
+texture_filter = 1
+position = Vector2(388.75, 832.5)
+scale = Vector2(2.0874, 2.01172)
+sprite_frames = SubResource("SpriteFrames_2gv2h")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://art/floor.aseprite"
+}
+
+[node name="HUD" parent="." instance=ExtResource("8_74upn")]
+
+[node name="UFO" parent="." instance=ExtResource("9_ieb21")]
+position = Vector2(1000, -3000)
+
+[node name="SpawnBossTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="SpawnPos" type="Node2D" parent="."]
+position = Vector2(224, 511)
+
+[node name="StarCollected" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_nkjsg")
+
+[connection signal="Died" from="Player" to="." method="PlayerDied"]
+[connection signal="Summon" from="Player" to="." method="Summon"]
+[connection signal="SummonPillar" from="Player" to="." method="SpawnPillar"]
+[connection signal="StartGame" from="HUD" to="." method="StartGame"]
+[connection signal="timeout" from="SpawnBossTimer" to="." method="OnSpawnBossTimerTimeout"]

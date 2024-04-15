@@ -1,0 +1,151 @@
+[gd_scene load_steps=14 format=3 uid="uid://prq3bsch0w1n"]
+
+[ext_resource type="Texture2D" uid="uid://csk3f8hy6mb7j" path="res://clouds.png" id="1_vthsv"]
+[ext_resource type="Script" path="res://background.cs" id="1_y17lm"]
+[ext_resource type="Texture2D" uid="uid://kqwssppf63oi" path="res://sky.png" id="2_wc3sa"]
+[ext_resource type="Texture2D" uid="uid://blclr5ud1xj11" path="res://grass.png" id="3_26vdd"]
+[ext_resource type="Texture2D" uid="uid://cu21kai72fte" path="res://mountain.png" id="3_lbxs1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grwfr"]
+atlas = ExtResource("2_wc3sa")
+region = Rect2(0, 0, 1280, 720)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0jgap"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grwfr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsblw"]
+atlas = ExtResource("3_26vdd")
+region = Rect2(0, 0, 1024, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cebtr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fsblw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfuet"]
+atlas = ExtResource("3_lbxs1")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v85bw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfuet")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5q7c2"]
+atlas = ExtResource("1_vthsv")
+region = Rect2(0, 0, 256, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pe1x3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5q7c2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+script = ExtResource("1_y17lm")
+
+[node name="SkyLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.1, 0.05)
+motion_mirroring = Vector2(2560, 1350)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SkyLayer"]
+texture_filter = 1
+position = Vector2(611, 248)
+scale = Vector2(2, 1.935)
+sprite_frames = SubResource("SpriteFrames_0jgap")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://art/sky.aseprite"
+}
+
+[node name="GroundLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(1200, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GroundLayer"]
+texture_filter = 1
+position = Vector2(549, 565)
+scale = Vector2(1.2, 1.149)
+sprite_frames = SubResource("SpriteFrames_cebtr")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://art/grass.aseprite"
+}
+
+[node name="Mountain" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.05, 0.025)
+motion_mirroring = Vector2(2000, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Mountain"]
+texture_filter = 1
+position = Vector2(420, 281)
+scale = Vector2(4.05469, 3.22461)
+sprite_frames = SubResource("SpriteFrames_v85bw")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://art/mountain.aseprite"
+}
+
+[node name="CloudLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.5, 0.2)
+motion_mirroring = Vector2(2000, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CloudLayer"]
+modulate = Color(1, 1, 1, 0.235294)
+texture_filter = 1
+position = Vector2(556, 96)
+scale = Vector2(5.12109, 4.52525)
+sprite_frames = SubResource("SpriteFrames_pe1x3")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://art/clouds.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"output_section": false
+}

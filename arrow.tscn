@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://dborg81pdqv2x"]
+
+[ext_resource type="Texture2D" uid="uid://cxft0gumykm5o" path="res://arrow.png" id="1_h636n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dp44g"]
+atlas = ExtResource("1_h636n")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jds54"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dp44g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Arrow" type="Node2D"]
+texture_filter = 1
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://art/arrow.aseprite"
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_jds54")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://art/arrow.aseprite"
+}

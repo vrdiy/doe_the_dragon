@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c18xvwc3fxynk"
+path="res://.godot/imported/sky.aseprite-641e395d3c78e59a19a7a1bd91d75ceb.res"
+
+[deps]
+
+source_file="res://art/sky.aseprite"
+dest_files=["res://.godot/imported/sky.aseprite-641e395d3c78e59a19a7a1bd91d75ceb.res"]
+
+[params]
+

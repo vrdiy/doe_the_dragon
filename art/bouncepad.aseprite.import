@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cysgtf60ly3hs"
+path="res://.godot/imported/bouncepad.aseprite-e84f5c8d840e04c239738d7b06ade824.res"
+
+[deps]
+
+source_file="res://art/bouncepad.aseprite"
+dest_files=["res://.godot/imported/bouncepad.aseprite-e84f5c8d840e04c239738d7b06ade824.res"]
+
+[params]
+

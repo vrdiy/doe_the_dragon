@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://tgixdfjxsfmt"]
+
+[ext_resource type="Script" path="res://ufo.cs" id="1_7480d"]
+[ext_resource type="Texture2D" uid="uid://bn653xi1yul1m" path="res://UFO.png" id="1_id64x"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_30ej8"]
+radius = 52.0
+height = 200.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uba4i"]
+atlas = ExtResource("1_id64x")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ayt0k"]
+atlas = ExtResource("1_id64x")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tt4h0"]
+atlas = ExtResource("1_id64x")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdw5k"]
+atlas = ExtResource("1_id64x")
+region = Rect2(0, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5bnq"]
+atlas = ExtResource("1_id64x")
+region = Rect2(256, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1c406"]
+atlas = ExtResource("1_id64x")
+region = Rect2(512, 256, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ooe1r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uba4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ayt0k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tt4h0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdw5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5bnq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1c406")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="UFO" type="StaticBody2D"]
+script = ExtResource("1_7480d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_30ej8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_ooe1r")
+metadata/_aseprite_wizard_config_ = {
+"layer": "UFO",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://art/UFO.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true
+}

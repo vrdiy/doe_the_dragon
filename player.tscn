@@ -1,0 +1,202 @@
+[gd_scene load_steps=20 format=3 uid="uid://b4jg7idhxqxah"]
+
+[ext_resource type="Script" path="res://player.cs" id="1_3p42d"]
+[ext_resource type="PackedScene" uid="uid://b2q6kcjbgbbqi" path="res://doublejump.tscn" id="2_6rxem"]
+[ext_resource type="Texture2D" uid="uid://qmueufhkbqvj" path="res://Layer 1.png" id="2_sr00k"]
+[ext_resource type="AudioStream" uid="uid://duwf72ukr60ks" path="res://sfx/death.wav" id="4_0kfcn"]
+[ext_resource type="AudioStream" uid="uid://do7s0x1scbek0" path="res://sfx/jump.wav" id="5_075os"]
+[ext_resource type="Texture2D" uid="uid://csu3vran5f1jx" path="res://direction.png" id="6_5cig4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3w4bf"]
+atlas = ExtResource("2_sr00k")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l016a"]
+atlas = ExtResource("2_sr00k")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pp06"]
+atlas = ExtResource("2_sr00k")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3a12u"]
+atlas = ExtResource("2_sr00k")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyxcy"]
+atlas = ExtResource("2_sr00k")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3muuc"]
+atlas = ExtResource("2_sr00k")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pjsd"]
+atlas = ExtResource("2_sr00k")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yuk1h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3w4bf")
+}],
+"loop": true,
+"name": &"Falling",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_l016a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pp06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3a12u")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l016a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyxcy")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3muuc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l016a")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pjsd")
+}],
+"loop": true,
+"name": &"WallGrab",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_43we1"]
+radius = 23.0
+height = 54.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_omamc"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_72cem"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_muks8"]
+atlas = ExtResource("6_5cig4")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ghod"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_muks8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_3p42d")
+DoubleJump = ExtResource("2_6rxem")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_yuk1h")
+animation = &"WallGrab"
+metadata/_aseprite_wizard_config_ = {
+"layer": "Layer 1",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://art/doe.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"output_section": true,
+"slice_section": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("CapsuleShape2D_43we1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -75)
+
+[node name="WallDetectRight" type="Area2D" parent="."]
+
+[node name="Right" type="CollisionShape2D" parent="WallDetectRight"]
+position = Vector2(22.5, 5.065)
+rotation = -1.5708
+shape = SubResource("CircleShape2D_omamc")
+one_way_collision = true
+
+[node name="WallDetectLeft" type="Area2D" parent="."]
+
+[node name="Left" type="CollisionShape2D" parent="WallDetectLeft"]
+position = Vector2(-20.765, 5.065)
+rotation = 1.5708
+shape = SubResource("CircleShape2D_omamc")
+one_way_collision = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_72cem")
+
+[node name="SpawnPositionRight" type="Node2D" parent="."]
+position = Vector2(150, 0)
+
+[node name="SpawnPositionLeft" type="Node2D" parent="."]
+position = Vector2(-150, 0)
+
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_0kfcn")
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_075os")
+volume_db = 11.409
+
+[node name="Direction" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="Direction"]
+position = Vector2(69.42, 0)
+rotation = 1.5708
+
+[node name="Direction" type="AnimatedSprite2D" parent="Direction/Node2D"]
+texture_filter = 1
+scale = Vector2(0.425, 0.425)
+sprite_frames = SubResource("SpriteFrames_1ghod")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://art/direction.aseprite"
+}
+
+[connection signal="body_entered" from="WallDetectRight" to="." method="OnWallJumpRightDetected"]
+[connection signal="body_exited" from="WallDetectRight" to="." method="OnCollideExit"]
+[connection signal="body_entered" from="WallDetectLeft" to="." method="OnWallJumpLeftDetected"]
+[connection signal="body_exited" from="WallDetectLeft" to="." method="OnCollideExit"]

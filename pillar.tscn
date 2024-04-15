@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://e0i2wwal5td8"]
+
+[ext_resource type="Script" path="res://pillar.cs" id="1_6j6w2"]
+[ext_resource type="Texture2D" uid="uid://c55lgcei4vq6f" path="res://pillar.png" id="1_va45h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otx1v"]
+atlas = ExtResource("1_va45h")
+region = Rect2(0, 0, 66, 258)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n83qj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otx1v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgwj1"]
+size = Vector2(62.69, 498.805)
+
+[node name="Pillar" type="StaticBody2D"]
+position = Vector2(0, 88)
+script = ExtResource("1_6j6w2")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 136)
+scale = Vector2(1, 2.17054)
+sprite_frames = SubResource("SpriteFrames_n83qj")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://art/pillar.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 166.598)
+shape = SubResource("RectangleShape2D_rgwj1")
+
+[node name="Death Timer" type="Timer" parent="."]
+wait_time = 4.0
+
+[connection signal="timeout" from="Death Timer" to="." method="_on_death_timer_timeout"]
