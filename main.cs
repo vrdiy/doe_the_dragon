@@ -1,6 +1,7 @@
 using Godot;
 using GodotPlugins.Game;
 using System;
+using System.Diagnostics;
 
 public partial class main : Node2D
 {
@@ -23,6 +24,7 @@ public partial class main : Node2D
 	public override void _Ready()
 	{
 		GD.Seed("vrdiy".Hash());
+		SetProcess(true);
 	}
 	public void PlayStarGetSound()
 	{
@@ -85,7 +87,10 @@ public partial class main : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-
+		if (Input.IsActionPressed("ui_cancel"))
+		{
+			GetTree().Quit();
+		}
 	}
 	public void StartGame()
 	{
